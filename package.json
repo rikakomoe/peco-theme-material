@@ -1,0 +1,26 @@
+{
+  "name": "peco-theme-material",
+  "version": "0.1.0",
+  "author": {
+    "name": "rikakomoe",
+    "email": "lijiahao99131@gmail.com"
+  },
+  "files": [
+    "layouts",
+    "components",
+    "styles",
+    "index.js"
+  ],
+  "scripts": {
+    "build": "peco build example",
+    "dev": "peco dev example"
+  },
+  "license": "GPLv3",
+  "devDependencies": {
+    "peco": "^0.1.4"
+  },
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "nprogress": "^0.2.0"
+  }
+}
