@@ -43,7 +43,7 @@
         &nbsp;{{ $themeConfig.comment.use === 'duoshuo' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'duoshuo'" class="post_entry-comment">
                         <span class="ds-thread-count"
-                              data-thread-key="<%= theme.comment.duoshuo_thread_key_type === 'id' ? post.id : post.path %>"
+                              :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.path"
                               data-count-type="comments"></span>
                 </span>
 
@@ -51,7 +51,7 @@
         &nbsp;{{ $themeConfig.comment.use === 'changyan' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
                         <span
-                          id="sourceId::<%= theme.comment.changyan_thread_key_type === 'id' ? post.id : post.path  %>"
+                          :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.path}`"
                           class="cy_cmt_count"></span>条评论
                 </span>
 

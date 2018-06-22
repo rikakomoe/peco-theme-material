@@ -1,0 +1,96 @@
+<template>
+  <div :class="rootClass">
+    <!-- Post_entry Header -->
+    <!-- Post Header Info -->
+    <div :class="postHeaderInfoClass">
+      <!-- Author Avatar & Name -->
+      <img :src="$siteData.url + $themeConfig.img.avatar" class="avatar-img" width="44px" height="44px"
+           :alt="`${$siteData.author}'s avatar`">
+      <span class="name-span">{{ $siteData.author }}</span>
+    </div>
+
+    <!-- Custom thumbnail -->
+    <div :class="thumbnailClass">
+      <img :src="post.thumbnail">
+    </div>
+
+    <!-- Post_entry Content -->
+    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
+      <!-- Post Title -->
+      <p class="post_entry-title">
+        <a :href="$siteData.url + post.path"><span v-if="pin">[Top]</span>{{ post.title }}</a>
+      </p>
+
+      <!-- Post Excerpt -->
+      <p class="post_entry-excerpt">
+        {{ excerpt }}
+        &nbsp;&nbsp;&nbsp;
+        <span>
+                <a :href="$siteData.url + post.path" target="_self">{{ $themeConfig[post.continue] }}</a>
+            </span>
+      </p>
+
+      <!-- Post Tags -->
+      <!--<%- list_tags(post.tags, {
+      show_count: false,
+      class: 'post_entry-tags',
+      style: 'list',
+      separator: ''
+      }) %> TODO: Fix this-->
+      {{ post.tags.join(' ') }}
+    </div>
+
+    <!-- Post_entry Footer -->
+    <div class="post_entry-footer">
+      <div class="post_entry-footer-border"></div>
+      <div class="post_entry-footer-info">
+        <div class="post_entry-footer-date">
+          {{ post.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this-->
+        </div>
+        <div class="post_entry-footer-comment">
+          <!-- Comment Number -->
+          <span v-if="$themeConfig.comment.use === 'duoshuo'" class="ds-thread-count"
+                :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.path"
+                data-count-type="comments"></span>
+          <!-- Comment Number -->
+          <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
+                            <span
+                              :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.path}`"
+                              class="cy_cmt_count"></span>条评论
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    props: ['post', 'index', 'pin'],
+    computed: {
+      rootClass() {
+        let t = '';
+        if (this.$themeConfig.card_elevation) t = `mdl-shadow--${this.$themeConfig.card_elevation}dp`;
+        return `post_entry-module mdl-card ${t} mdl-cell mdl-cell--12-col fade out`;
+      },
+      postHeaderInfoClass() {
+        return 'post_entry-header_info ' + !this.post.thumbnail ? 'without-thumbnail' : 'with-thumbnail';
+      },
+      thumbnailClass() {
+        return !this.post.thumbnail ? 'post_thumbnail-null' : 'post_thumbnail-custom';
+      },
+      excerpt() {
+        let regex = /(<([^>]+)>)/ig;
+        if (this.post.excerpt) {
+          return this.post.excerpt.replace(regex, '');
+        } else {
+          return this.post.content.substring(0, this.$themeConfig.reading.entry_excerpt).replace(regex, '')
+        }
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
