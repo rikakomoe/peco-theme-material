@@ -4,7 +4,7 @@
     <!-- Post Header Info -->
     <div :class="postHeaderInfoClass">
       <!-- Author Avatar & Name -->
-      <img :src="$siteData.url + $themeConfig.img.avatar" class="avatar-img" width="44px" height="44px"
+      <img :src="url_for($themeConfig.img.avatar)" class="avatar-img" width="44px" height="44px"
            :alt="`${$siteData.author}'s avatar`">
       <span class="name-span">{{ $siteData.author }}</span>
     </div>
@@ -18,7 +18,7 @@
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
       <!-- Post Title -->
       <p class="post_entry-title">
-        <a :href="$siteData.url + post.path"><span v-if="pin">[Top]</span>{{ post.title }}</a>
+        <a :href="url_for(post.slug)"><span v-if="pin">[Top]</span>{{ post.attributes.title }}</a>
       </p>
 
       <!-- Post Excerpt -->
@@ -26,7 +26,7 @@
         {{ excerpt }}
         &nbsp;&nbsp;&nbsp;
         <span>
-                <a :href="$siteData.url + post.path" target="_self">{{ $themeConfig[post.continue] }}</a>
+                <a :href="url_for(post.path)" target="_self">{{ $themeConfig[post.continue] }}</a>
             </span>
       </p>
 
@@ -45,17 +45,17 @@
       <div class="post_entry-footer-border"></div>
       <div class="post_entry-footer-info">
         <div class="post_entry-footer-date">
-          {{ post.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this-->
+          {{ post.attributes.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this-->
         </div>
         <div class="post_entry-footer-comment">
           <!-- Comment Number -->
           <span v-if="$themeConfig.comment.use === 'duoshuo'" class="ds-thread-count"
-                :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.path"
+                :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.slug"
                 data-count-type="comments"></span>
           <!-- Comment Number -->
           <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
                             <span
-                              :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.path}`"
+                              :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.slug}`"
                               class="cy_cmt_count"></span>条评论
                     </span>
         </div>
@@ -65,8 +65,12 @@
 </template>
 
 <script>
+  import url_for from '../utils/url_for';
   export default {
     props: ['post', 'index', 'pin'],
+    created() {
+      this.url_for = url_for.bind(this);
+    },
     computed: {
       rootClass() {
         let t = '';

@@ -4,7 +4,8 @@
     <div :class="thumbnailClass" :style="thumbnailStyle" :data-original="thumbnailDataOriginal">
 
       <!-- Post Title -->
-      <p class="article-headline-p"><a :href="$siteData.url + post.path"><span v-if="pin">[Top]</span>{{ post.title
+      <p class="article-headline-p"><a :href="url_for(post.slug)"><span v-if="pin">[Top]</span>{{
+        post.attributes.title
         }}</a></p>
     </div>
 
@@ -13,7 +14,7 @@
       {{ excerpt }}
 
       <span>
-            <a :href="$siteData.url + post.path" target="_self">{{ $themeConfig[post.continue] }}</a>
+            <a :href="url_for(post.path)" target="_self">{{ $themeConfig[post.continue] }}</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -21,12 +22,12 @@
       <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
         <!-- Author Avatar -->
         <div id="author-avatar">
-          <img :src="$siteData.url + $themeConfig.img.avatar" width="44px" height="44px"
+          <img :src="url_for($themeConfig.img.avatar)" width="44px" height="44px"
                :alt="`${$siteData.author}'s avatar`">
         </div>
         <div>
           <strong>{{ $siteData.author }}</strong>
-          <span>{{ post.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this--></span>
+          <span>{{ post.attributes.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this--></span>
         </div>
       </div>
       <div id="post_entry-right-info">
@@ -43,7 +44,7 @@
         &nbsp;{{ $themeConfig.comment.use === 'duoshuo' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'duoshuo'" class="post_entry-comment">
                         <span class="ds-thread-count"
-                              :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.path"
+                              :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.slug"
                               data-count-type="comments"></span>
                 </span>
 
@@ -51,7 +52,7 @@
         &nbsp;{{ $themeConfig.comment.use === 'changyan' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
                         <span
-                          :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.path}`"
+                          :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.slug}`"
                           class="cy_cmt_count"></span>条评论
                 </span>
 
@@ -64,8 +65,12 @@
 </template>
 
 <script>
+  import url_for from '../utils/url_for';
   export default {
     props: ['post', 'index', 'pin'],
+    created() {
+      this.url_for = url_for.bind(this);
+    },
     computed: {
       rootClass() {
         let t = '';

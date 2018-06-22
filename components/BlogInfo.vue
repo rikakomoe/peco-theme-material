@@ -8,7 +8,7 @@
     <!-- LOGO -->
     <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
       <a :href="logoAnchorUrl" target="_blank">
-        <img :src="logoImgUrl" alt="logo" />
+        <img :src="url_for($themeConfig.img.logo)" alt="logo" />
       </a>
     </div>
 
@@ -116,7 +116,11 @@
 
 <script>
   import ParadoxSearch from 'ParadoxSearch.vue';
+  import url_for from '../utils/url_for';
   export default {
+    created() {
+      this.url_for = url_for.bind(this);
+    },
     components: {
       'paradox-search': ParadoxSearch,
     },
@@ -127,9 +131,6 @@
       },
       logoAnchorUrl() {
         return this.$themeConfig.url.logo || '#';
-      },
-      logoImgUrl() {
-        return this.$siteData.url + this.$themeConfig.img.logo;
       },
       shareWeiboLink() {
         return `http://service.weibo.com/share/share.php?appkey=&title=${this.$siteData.title}&url=${this.$siteData.url}&pic=${this.$siteData.url}${this.$themeConfig.head.favicon}&searchPic=false&style=simple`;

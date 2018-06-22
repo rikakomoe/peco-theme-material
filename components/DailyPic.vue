@@ -3,7 +3,7 @@
   <div :class="dailyPicClass">
 
     <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" :style="picSloganStyle">
+    <div class="mdl-card__media mdl-color-text--grey-50" :style="`background-image:url(${url_for($themeConfig.img.daily_pic)})`">
       <p class="index-top-block-slogan"><a :href="$themeConfig.url.daily_pic" v-html="picSloganLink">
       </a></p>
     </div>
@@ -12,7 +12,7 @@
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
       <!-- Author Avatar -->
       <div id="author-avatar">
-        <img :src="authorAvatarUrl" width="32px" height="32px" alt="avatar">
+        <img :src="url_for(this.$themeConfig.img.avatar)" width="32px" height="32px" alt="avatar">
       </div>
       <div>
         <strong>{{ $siteData.author }}</strong>
@@ -22,14 +22,15 @@
 </template>
 
 <script>
+  import url_for from '../utils/url_for';
   export default {
+    created() {
+      this.url_for = url_for.bind(this);
+    },
     computed: {
       dailyPicClass() {
         const t = this.$themeConfig.card_elevation ? `mdl-shadow--${this.$themeConfig.card_elevation}dp` : '';
         return `mdl-card ${t} daily-pic mdl-cell mdl-cell--8-col index-top-block`;
-      },
-      picSloganStyle() {
-        return `background-image:url(${this.$siteData.url + this.$themeConfig.img.daily_pic})`;
       },
       picSloganLink() {
         if (this.$themeConfig.uiux.slogan) {
@@ -41,9 +42,6 @@
         }
         return '';
       },
-      authorAvatarUrl() {
-        return this.$siteData.url + this.$themeConfig.img.avatar;
-      }
     }
   }
 </script>
