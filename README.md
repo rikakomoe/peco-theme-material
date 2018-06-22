@@ -6,6 +6,33 @@
 
 > Nature, Pure | 原质，纯粹
 
+This is a [Peco](https://github.com/egojump/peco) theme forked from [hexo-theme-material](https://github.com/viosey/hexo-theme-material).  
+本项目是移植自 [hexo-theme-material](https://github.com/viosey/hexo-theme-material) 的 [Peco](https://github.com/egojump/peco) 主题。
+
+Currently **Working In Progress** and and should be ready soon.  
+现在**还在开发**喵，应该不久之后就可以跑起来了**咕**
+
+Peco is a static website generator that aims to be as simple as Hexo but also takes advantage of the modern front-end technology like Webpack, SPA, SSG (server-side generated).
+It is feature-complete for generating blog or documentation websites but is still in beta phase, only use it if you're adventurous.  
+Peco 是一个类似 Hexo 的静态网站构建工具，它用起来像 Hexo 一样简单的同时搭载了 Webpack、单页应用程序、服务端生成等现代前端特性。它拥有完整的用于搭建博客或文档网站的功能，但是目前仍然处于 Beta 阶段，如果你不是一个冒险者不要用它 2333
+
+Peco is similar to [Gatsby](https://www.gatsbyjs.org/) but it's based on Vue. [This issue](https://github.com/viosey/hexo-theme-material/issues/609) discusses intention to port this theme to Gatsby, however I eventually decided to try working on Peco \w/  
+Peco 类似于 [Gatsby](https://www.gatsbyjs.org/) 但是基于 Vue。[这里](https://github.com/viosey/hexo-theme-material/issues/609)有关于将这个主题移植到 Gatsby 的的讨论，但是我最终决定先尝试移植到 Peco。
+
+Here are the main missions of this project:  
+本项目主要包括下面的工作：
+
+- Refactor ejs templates with vue component  
+  将 ejs 模板用 vue 组件重构
+- Eliminate jQuery and it's plugins, implement corresponding feature with vue and vue family libraries instead  
+  去除 jQuery 及其插件，用 vue 和 vue 相关的库重构
+
+<hr>
+
+> 以下是原项目说明
+
+<hr>
+
 <p align="center">
 <img alt="Version" src="https://img.shields.io/badge/version-1.5.2-757575.svg?style=flat-square"/>
 <a href="https://viosey.com"><img alt="Author" src="https://img.shields.io/badge/author-Viosey-red.svg?style=flat-square"/></a>
