@@ -12,7 +12,7 @@
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
       <!-- Author Avatar -->
       <div id="author-avatar">
-        <img :src="url_for(this.$themeConfig.img.avatar)" width="32px" height="32px" alt="avatar">
+        <img :src="url_for($themeConfig.img.avatar)" width="32px" height="32px" alt="avatar">
       </div>
       <div>
         <strong>{{ $siteData.author }}</strong>

@@ -14,7 +14,7 @@
       {{ excerpt }}
 
       <span>
-            <a :href="url_for(post.path)" target="_self">{{ $themeConfig[post.continue] }}</a>
+            <a :href="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -27,24 +27,24 @@
         </div>
         <div>
           <strong>{{ $siteData.author }}</strong>
-          <span>{{ post.attributes.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this--></span>
+          <span>{{ date(post.attributes.date, 'MMM DD, YYYY') }}</span>
         </div>
       </div>
       <div id="post_entry-right-info">
         <!-- Category -->
-        <span v-if="post.categories && post.categories.length" class="post_entry-category">
+        <span v-if="post.attributes.categories && post.attributes.categories.length" class="post_entry-category">
 <!--                  <%- list_categories(post.categories, {
                       show_count: false,
                       class: 'post_category',
                       style: 'none'
                   }) %> TODO: Fix this-->
-              {{ post.categories.join(' ') }}
+              {{ post.attributes.categories.join(' ') }}
               </span>
 
         &nbsp;{{ $themeConfig.comment.use === 'duoshuo' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'duoshuo'" class="post_entry-comment">
                         <span class="ds-thread-count"
-                              :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.slug"
+                              :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.attributes.id : post.slug"
                               data-count-type="comments"></span>
                 </span>
 
@@ -52,7 +52,7 @@
         &nbsp;{{ $themeConfig.comment.use === 'changyan' ? '|' : '' }}&nbsp;
         <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
                         <span
-                          :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.slug}`"
+                          :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.attributes.id : post.slug}`"
                           class="cy_cmt_count"></span>条评论
                 </span>
 
@@ -65,11 +65,13 @@
 </template>
 
 <script>
+  import date from 'date-fns/format'
   import url_for from '../utils/url_for';
   export default {
     props: ['post', 'index', 'pin'],
     created() {
       this.url_for = url_for.bind(this);
+      this.date = date;
     },
     computed: {
       rootClass() {
@@ -79,24 +81,24 @@
       },
       thumbnailClass() {
         let t = 'mdl-card__media mdl-color-text--grey-50';
-        if (!this.post.thumbnail) {
+        if (!this.post.attributes.thumbnail) {
           if (!this.$themeConfig.thumbnail.purecolor) return `post_thumbnail-random ${t}`;
           else return `post-thumbnail-pure ${t}`;
         } else return `post_thumbnail-custom ${t} lazy`;
       },
       thumbnailStyle() {
-        return !this.post.thumbnail && this.$themeConfig.thumbnail.purecolor ?
+        return !this.post.attributes.thumbnail && this.$themeConfig.thumbnail.purecolor ?
           `background-color:${this.$themeConfig.thumbnail.purecolor} !important` : '';
       },
       thumbnailDataOriginal() {
-        return this.post.thumbnail ? this.post.thumbnail : '';
+        return this.post.attributes.thumbnail ? this.post.attributes.thumbnail : '';
       },
       excerpt() {
-        let regex = /(<([^>]+)>)/ig;
+        let regex = /<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi;
         if (this.post.excerpt) {
           return this.post.excerpt.replace(regex, '');
         } else {
-          return this.post.content.substring(0, this.$themeConfig.reading.entry_excerpt).replace(regex, '')
+          return this.post.body.substring(0, this.$themeConfig.reading.entry_excerpt).replace(regex, '')
         }
       }
     }

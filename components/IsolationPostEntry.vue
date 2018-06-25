@@ -11,7 +11,7 @@
 
     <!-- Custom thumbnail -->
     <div :class="thumbnailClass">
-      <img :src="post.thumbnail">
+      <img :src="post.attributes.thumbnail">
     </div>
 
     <!-- Post_entry Content -->
@@ -26,7 +26,7 @@
         {{ excerpt }}
         &nbsp;&nbsp;&nbsp;
         <span>
-                <a :href="url_for(post.path)" target="_self">{{ $themeConfig[post.continue] }}</a>
+                <a :href="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</a>
             </span>
       </p>
 
@@ -37,7 +37,7 @@
       style: 'list',
       separator: ''
       }) %> TODO: Fix this-->
-      {{ post.tags.join(' ') }}
+      {{ post.attributes.tags.join(' ') }}
     </div>
 
     <!-- Post_entry Footer -->
@@ -45,17 +45,17 @@
       <div class="post_entry-footer-border"></div>
       <div class="post_entry-footer-info">
         <div class="post_entry-footer-date">
-          {{ post.attributes.date }}<!--<%= date(post.date, 'MMM DD, YYYY') %> TODO: Fix this-->
+          {{ date(post.attributes.date, 'MMM DD, YYYY') }}
         </div>
         <div class="post_entry-footer-comment">
           <!-- Comment Number -->
           <span v-if="$themeConfig.comment.use === 'duoshuo'" class="ds-thread-count"
-                :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.id : post.slug"
+                :data-thread-key="$themeConfig.comment.duoshuo_thread_key_type === 'id' ? post.attributes.id : post.slug"
                 data-count-type="comments"></span>
           <!-- Comment Number -->
           <span v-if="$themeConfig.comment.use === 'changyan'" class="post_entry-comment">
                             <span
-                              :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.id : post.slug}`"
+                              :id="`sourceId::${$themeConfig.comment.changyan_thread_key_type === 'id' ? post.attributes.id : post.slug}`"
                               class="cy_cmt_count"></span>条评论
                     </span>
         </div>
@@ -65,11 +65,13 @@
 </template>
 
 <script>
+  import date from 'date-fns/format'
   import url_for from '../utils/url_for';
   export default {
     props: ['post', 'index', 'pin'],
     created() {
       this.url_for = url_for.bind(this);
+      this.date = date;
     },
     computed: {
       rootClass() {
@@ -78,17 +80,17 @@
         return `post_entry-module mdl-card ${t} mdl-cell mdl-cell--12-col fade out`;
       },
       postHeaderInfoClass() {
-        return 'post_entry-header_info ' + !this.post.thumbnail ? 'without-thumbnail' : 'with-thumbnail';
+        return 'post_entry-header_info ' + !this.post.attributes.thumbnail ? 'without-thumbnail' : 'with-thumbnail';
       },
       thumbnailClass() {
-        return !this.post.thumbnail ? 'post_thumbnail-null' : 'post_thumbnail-custom';
+        return !this.post.attributes.thumbnail ? 'post_thumbnail-null' : 'post_thumbnail-custom';
       },
       excerpt() {
         let regex = /(<([^>]+)>)/ig;
         if (this.post.excerpt) {
           return this.post.excerpt.replace(regex, '');
         } else {
-          return this.post.content.substring(0, this.$themeConfig.reading.entry_excerpt).replace(regex, '')
+          return this.post.body.substring(0, this.$themeConfig.reading.entry_excerpt).replace(regex, '')
         }
       }
     }
