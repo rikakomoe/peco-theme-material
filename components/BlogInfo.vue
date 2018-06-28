@@ -115,14 +115,14 @@
 </template>
 
 <script>
-  import ParadoxSearch from 'ParadoxSearch.vue';
+  import ParadoxSearch from 'ParadoxSearch';
   import url_for from '../utils/url_for';
   export default {
     created() {
       this.url_for = url_for.bind(this);
     },
     components: {
-      'paradox-search': ParadoxSearch,
+      ParadoxSearch,
     },
     computed: {
       blogInfoClassName() {

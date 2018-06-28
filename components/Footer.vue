@@ -29,10 +29,10 @@
 </template>
 
 <script>
-  import FooterLeft from './FooterLeft.vue';
+  import FooterLeft from './FooterLeft';
   export default {
     components: {
-      'footer-left': FooterLeft,
+      FooterLeft,
     },
     computed: {
       copyright() {
