@@ -19,10 +19,8 @@
 
         <slot />
 
-        <!--      <% if(theme.scheme === 'Paradox') { %>
-              <%- partial('_partial/sidebar') %>
-              <% } %>
-
+        <sidebar v-if="$themeConfig.scheme === 'Paradox'" />
+        <!--
               <% if( (theme.scheme === 'Paradox') && (is_post() || is_home() || is_archive() || is_category() || (page.totop ===
               true) ) ) { %>
               &lt;!&ndash; Footer Top Button &ndash;&gt;
@@ -38,7 +36,11 @@
 </template>
 
 <script>
-  export default { }
+  import Sidebar from "./Sidebar";
+
+  export default {
+    components: { Sidebar }
+  }
 </script>
 
 <style scoped>
