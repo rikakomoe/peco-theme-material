@@ -56,6 +56,7 @@
   import PostHeader from "../components/PostHeader";
   import ParadoxPostInfo from "../components/ParadoxPostInfo";
   import PostContent from "../components/PostContent";
+  import head from '../head';
 
   export default {
     components: {
@@ -64,21 +65,9 @@
       PostHeader,
       ParadoxPostInfo,
     },
-    /*head() {
-      let desc = this.page.attributes.subtitle || this.page.excerpt || ''
-      // Strip HTML
-      desc = desc.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '')
-
-      return {
-        title: `${this.page.attributes.title} - ${this.$siteData.title}`,
-        meta: [
-          {
-            name: 'description',
-            content: desc
-          }
-        ]
-      }
-    },*/
+    head() {
+      return head(this.$siteData, this.$themeConfig, this.$feedLink, this.page)
+    },
     props: ['page'],
   }
 </script>

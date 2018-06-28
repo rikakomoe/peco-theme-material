@@ -55,6 +55,7 @@
   import Layout from "../components/Layout";
   import ParadoxPostEntry from "../components/ParadoxPostEntry";
   import IsolationPostEntry from "../components/IsolationPostEntry";
+  import head from '../head';
 
   export default {
     components: {
@@ -63,18 +64,7 @@
       ParadoxPostEntry
     },
     head() {
-      return {
-        title: this.$siteData.title,
-        meta: [
-          {
-            name: 'description',
-            content: this.$siteData.description
-          }
-        ],
-        link: [
-          this.$feedLink
-        ].filter(Boolean)
-      }
+      return head(this.$siteData, this.$themeConfig, this.$feedLink, this.page)
     },
     props: ['page']
   }
