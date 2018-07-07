@@ -1,5 +1,7 @@
 import url_for from '../utils/url_for';
 
+let uc_alert;
+
 export default ($siteData, $themeConfig) => {
   const $cdn = $themeConfig.vendors.materialcdn || 'https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material/source';
   const links = [
@@ -24,7 +26,7 @@ export default ($siteData, $themeConfig) => {
     },
   ];
 
-  if ($themeConfig.prettify.enable /* && is post TODO*/) {
+  if ($themeConfig.prettify.enable) {
     links.push([
       {
         rel: 'stylesheet',
@@ -44,6 +46,17 @@ export default ($siteData, $themeConfig) => {
       rel: 'stylesheet',
       href: $cdn + '/css/fontawesome.min.css'
     })
+  }
+
+  const agent = navigator.userAgent.toLowerCase();
+  if(agent.indexOf('ucbrowser')>0) {
+    links.push({
+      rel: 'stylesheet',
+      href: `${$cdn}/css/uc.css`,
+      type: 'text/css'
+    });
+    if (!uc_alert) alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+    uc_alert = true;
   }
 
   return links;

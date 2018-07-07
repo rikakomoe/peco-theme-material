@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "date-fns": "^1.29.0",
+    "ejs-compiled-loader": "^1.1.0",
     "nprogress": "^0.2.0",
     "raw-loader": "^0.5.1"
   }
