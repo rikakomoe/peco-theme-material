@@ -7,7 +7,7 @@ export default ({ router }) => {
 
     const loaded = Object.create(null);
 
-    nprogress.configure({ showSpinner: false });
+    nprogress.configure({ showSpinner: true });
 
     router.beforeEach((to, from, next) => {
       document.documentElement.style.overflow = 'auto';

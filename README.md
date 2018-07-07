@@ -19,14 +19,6 @@ Peco 是一个类似 Hexo 的静态网站构建工具，它用起来像 Hexo 一
 Peco is similar to [Gatsby](https://www.gatsbyjs.org/) but it's based on Vue. [This issue](https://github.com/viosey/hexo-theme-material/issues/609) discusses intention to port this theme to Gatsby, however I eventually decided to try working on Peco \w/  
 Peco 类似于 [Gatsby](https://www.gatsbyjs.org/) 但是基于 Vue。[这里](https://github.com/viosey/hexo-theme-material/issues/609)有关于将这个主题移植到 Gatsby 的的讨论，但是我最终决定先尝试移植到 Peco。
 
-Here are the main missions of this project:  
-本项目主要包括下面的工作：
-
-- Refactor ejs templates with vue component  
-  将 ejs 模板用 vue 组件重构
-- Eliminate jQuery and it's plugins, implement corresponding feature with vue and vue family libraries instead  
-  去除 jQuery 及其插件，用 vue 和 vue 相关的库重构
-
 <hr>
 
 > 以下是原项目说明

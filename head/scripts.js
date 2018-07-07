@@ -1,12 +1,14 @@
 import js_js from '!raw-loader!./scripts/js.js';
 import queue_js from '!raw-loader!./scripts/queue.js';
-import bing_js from '!ejs-compiled-loader!./scripts/bing.js';
+import nprogress_js from '!ejs-compiled-loader!./scripts/nprogress.js.ejs';
+import bing_js from '!ejs-compiled-loader!./scripts/bing.js.ejs';
 import lazyload_js from '!raw-loader!./scripts/lazyload.js';
 
-if (!window.materialVersion) {
-  window.materialVersion = "1.5.2";
+let materialVersion;
+if (!materialVersion) {
+  materialVersion = "1.5.2";
   // Delete localstorage with these tags
-  window.oldVersion = [
+  const oldVersion = [
     'codestartv1',
     '1.3.4',
     '1.4.0',
@@ -40,6 +42,12 @@ export default ($siteData, $themeConfig) => {
       innerHTML: js_js,
       body: true,
     },
+    /*{
+      id: 'NProgress-script',
+      key: new Date().toString(),
+      innerHTML: nprogress_js({ theme: $themeConfig }),
+      body: true,
+    }*/
   ];
   if ($themeConfig.js_effect.smoothscroll === true) {
     scripts.push({
@@ -48,7 +56,7 @@ export default ($siteData, $themeConfig) => {
         body: true,
       });
   }
-  if ($themeConfig.prettify.enable) {
+  if ($themeConfig.prettify.enable) { // is post
     scripts.push({
       key: 'prettify_js',
       src: `${$cdn}/js/prettify.min.js`,
@@ -62,17 +70,18 @@ export default ($siteData, $themeConfig) => {
       body: true
     })
   }
-  if($themeConfig.background.bing.enable) {
+  /*if($themeConfig.background.bing.enable) {
     scripts.push({
       id: 'Bing-Background-script',
       innerHTML: bing_js({ theme: $themeConfig }),
       body: true
     })
-  }
-  scripts.push({
+  }*/
+  /*scripts.push({
     id: 'lazy-load',
     innerHTML: lazyload_js,
-  });
+    body: true,
+  });*/
 
   return scripts;
 }
