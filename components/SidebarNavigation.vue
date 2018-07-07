@@ -4,20 +4,20 @@
     <li class="dropdown">
       <ul id="settings-dropdown" class="dropdown-menu">
         <li v-for="(v, i) in $themeConfig.sidebar.dropdown">
-          <a :href="v.link" target="_blank" :title="i">
+          <router-link :to="v.link" target="_blank" :title="i">
             <i v-if="v.icon" class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">{{v.icon}}</i>
             {{ i }}
-          </a>
+          </router-link>
         </li>
       </ul>
     </li>
 
     <!-- Homepage -->
     <li v-if="$themeConfig.sidebar.homepage.use" id="sidebar-first-li">
-      <a :href="$siteData.url">
+      <router-link :to="$siteData.url">
         <i v-if="$themeConfig.sidebar.homepage.icon" class="material-icons sidebar-material-icons">{{$themeConfig.sidebar.homepage.icon}}</i>
         {{ $themeConfig.i18n.sidebar.homepage }}
-      </a>
+      </router-link>
     </li>
     <li v-if="$themeConfig.sidebar.homepage.use && $themeConfig.sidebar.homepage.divider" class="divider"></li>
 
@@ -66,10 +66,10 @@
     <!-- Pages  -->
     <template v-for="(v, i) in $themeConfig.sidebar.pages">
       <li>
-        <a :href="v.link" :title="i">
+        <router-link :to="v.link" :title="i">
           <i v-if="v.icon" class="material-icons sidebar-material-icons">{{ v.icon }}</i>
           {{ i }}
-        </a>
+        </router-link>
       </li>
       <li v-if="v.divider" class="divider"></li>
     </template>

@@ -1,4 +1,6 @@
 import meta from './meta'
+import styles from './styles'
+import scripts from './scripts'
 
 export default ($siteData, $themeConfig, $feedLink, page) => {
   let title = page.title;
@@ -26,8 +28,10 @@ export default ($siteData, $themeConfig, $feedLink, page) => {
   return {
     title,
     meta: meta($siteData, $themeConfig, title, page),
-    link: [
+    link: styles($siteData, $themeConfig).concat([
       $feedLink
-    ].filter(Boolean)
+    ].filter(Boolean)),
+    script: scripts($siteData, $themeConfig),
+    __dangerouslyDisableSanitizers: ['script']
   }
 }

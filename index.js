@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import 'nprogress/nprogress.css'
-import './styles/material.css'
-import './styles/material-icons.css'
-import './styles/style.css'
 
 export default ({ router }) => {
   if (process.browser) {
@@ -13,6 +10,7 @@ export default ({ router }) => {
     nprogress.configure({ showSpinner: false });
 
     router.beforeEach((to, from, next) => {
+      document.documentElement.style.overflow = 'auto';
       if (!loaded[to.path]) {
         nprogress.start()
       }

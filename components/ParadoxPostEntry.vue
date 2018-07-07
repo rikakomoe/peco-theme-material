@@ -4,9 +4,9 @@
     <div :class="thumbnailClass" :style="thumbnailStyle" :data-original="thumbnailDataOriginal">
 
       <!-- Post Title -->
-      <p class="article-headline-p"><a :href="url_for(post.slug)"><span v-if="pin">[Top]</span>{{
+      <p class="article-headline-p"><router-link :to="url_for(post.slug)"><span v-if="pin">[Top]</span>{{
         post.attributes.title
-        }}</a></p>
+        }}</router-link></p>
     </div>
 
     <!-- Post Excerpt -->
@@ -14,7 +14,7 @@
       {{ excerpt }}
 
       <span>
-            <a :href="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</a>
+            <router-link :to="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</router-link>
         </span>
     </div>
     <!-- Post_entry Info-->

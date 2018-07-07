@@ -18,7 +18,7 @@
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
       <!-- Post Title -->
       <p class="post_entry-title">
-        <a :href="url_for(post.slug)"><span v-if="pin">[Top]</span>{{ post.attributes.title }}</a>
+        <router-link :to="url_for(post.slug)"><span v-if="pin">[Top]</span>{{ post.attributes.title }}</router-link>
       </p>
 
       <!-- Post Excerpt -->
@@ -26,7 +26,7 @@
         {{ excerpt }}
         &nbsp;&nbsp;&nbsp;
         <span>
-                <a :href="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</a>
+                <router-link :to="url_for(post.slug)" target="_self">{{ $themeConfig.i18n.post.continue }}</router-link>
             </span>
       </p>
 

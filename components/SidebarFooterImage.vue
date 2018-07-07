@@ -1,9 +1,9 @@
 <template>
   <div>
   <span v-for="(v, i) in $themeConfig.img.footer_image" :id="footer-image">
-        <a :href="url_for(v.link)" target="_blank" :title="i">
+        <router-link :to="url_for(v.link)" target="_blank" :title="i">
             <img :src="url_for(v.src)" :alt="i"><!--
-     --></a>
+     --></router-link>
     </span>
   </div>
 </template>
