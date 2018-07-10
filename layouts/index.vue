@@ -1,12 +1,12 @@
 <template>
   <layout>
-
+    <h1>喵</h1>
   </layout>
 </template>
 
 <script>
 
-import Layout from "../components/Layout";
+import Layout from "../components/layouts/Layout";
 
 export default {
   components: { Layout },

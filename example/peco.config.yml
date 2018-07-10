@@ -1,7 +1,9 @@
 title: Material
 description: A Peco theme
+author: Riko
 email: rsakurauchi@madisoncollege.edu
 feed: true
 url: https://peco-theme-material.netlify.com
 theme: ../
+permalink: :slug
 themeConfig:
