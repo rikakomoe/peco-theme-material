@@ -1,11 +1,15 @@
 <template>
-  <div class="container">
-  </div>
+  <layout>
+
+  </layout>
 </template>
 
 <script>
 
+import Layout from "../components/Layout";
+
 export default {
+  components: { Layout },
   head() {
     return {
       title: this.$siteData.title,

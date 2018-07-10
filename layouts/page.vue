@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <div class="page">
-    </div>
-  </div>
+  <layout>
+
+  </layout>
 </template>
 
 <script>
 import format from 'date-fns/format'
+import Layout from "../components/Layout";
 
 export default {
+  components: { Layout },
   head() {
     let desc = this.page.attributes.subtitle || this.page.excerpt || ''
     // Strip HTML
