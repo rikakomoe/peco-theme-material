@@ -102,8 +102,36 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const postPage = path.resolve("src/templates/post.jsx");
     const tagPage = path.resolve("src/templates/tag.jsx");
     const categoryPage = path.resolve("src/templates/category.jsx");
-    resolve(
-      graphql(
+    graphql(`
+      {
+        allFile(filter: { extension: { eq: "mdx" } }) {
+          edges {
+            node {
+              absolutePath
+              relativeDirectory
+              name
+            }
+          }
+        }
+      }
+    `)
+      .then(result => {
+        if (result.errors) {
+          return reject(result.errors)
+        }
+
+        // Create markdown pages.
+        result.data.allFile.edges.forEach(
+          ({ node: { absolutePath, relativeDirectory, name } }) => {
+            createPage({
+              path: `${relativeDirectory}/${name}`,
+              component: absolutePath,
+            })
+          }
+        );
+        return result;
+      })
+      .then(() => graphql(
         `
           {
             allMarkdownRemark {
@@ -121,7 +149,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
           }
         `
-      ).then(result => {
+      ) )
+      .then(result => {
         if (result.errors) {
           /* eslint no-console: "off" */
           console.log(result.errors);
@@ -172,7 +201,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           });
         });
       })
-    );
+      .then(resolve);
   });
 };
 

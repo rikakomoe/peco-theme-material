@@ -21,6 +21,7 @@ module.exports = {
     }
   },
   plugins: [
+    "gatsby-plugin-mdx",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     {
@@ -35,6 +36,13 @@ module.exports = {
       options: {
         name: "posts",
         path: `${__dirname}/content`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: `${__dirname}/src/pages`
       }
     },
     {
