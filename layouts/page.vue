@@ -1,13 +1,15 @@
 <template>
   <layout>
     <md-card>
-      <md-card-media :style="`background-image: url('https://ekyu.moe/article/thompson-hack-on-golang/thumbnail.jpg')`" >
+      <md-card-media :style="`background-image: url('https://ekyu.moe/article/thompson-hack-on-golang/thumbnail.jpg')`">
         <md-card-header>
-          <div class="post-title">{{ page.attributes.title }}</div>
+          <div class="post-title">
+            {{ page.attributes.title }}
+          </div>
         </md-card-header>
       </md-card-media>
 
-      <md-card-actions class="post-header" md-alignment="space-between">
+      <md-card-actions class="post-header bb" md-alignment="space-between">
         <div class="author-box">
           <md-avatar>
             <img src="//ekyu.moe/res/img/avatar.jpg" alt="People">
@@ -19,9 +21,13 @@
         </div>
 
         <div>
-          <md-button class="md-icon-button"><md-icon>devices_other</md-icon></md-button>
+          <md-button class="md-icon-button">
+            <md-icon>devices_other</md-icon>
+          </md-button>
           <md-menu md-direction="bottom-end">
-            <md-button class="md-icon-button" md-menu-trigger><md-icon>bookmark</md-icon></md-button>
+            <md-button class="md-icon-button" md-menu-trigger>
+              <md-icon>bookmark</md-icon>
+            </md-button>
 
             <md-menu-content>
               <md-menu-item>My Item 1</md-menu-item>
@@ -30,7 +36,9 @@
             </md-menu-content>
           </md-menu>
           <md-menu md-direction="bottom-end">
-            <md-button class="md-icon-button" md-menu-trigger><md-icon>share</md-icon></md-button>
+            <md-button class="md-icon-button" md-menu-trigger>
+              <md-icon>share</md-icon>
+            </md-button>
 
             <md-menu-content>
               <md-menu-item>My Item 1</md-menu-item>
@@ -41,7 +49,7 @@
         </div>
       </md-card-actions>
 
-      <md-card-content v-html="page.body" />
+      <md-card-content class="post-content" v-html="page.body" />
     </md-card>
   </layout>
 </template>
@@ -67,9 +75,7 @@
         ]
       }
     },
-
     props: ['page'],
-
     methods: {
       formatDate(v) {
         return format(v, 'DD MMM YYYY')
@@ -118,11 +124,11 @@
     flex-direction: column;
   }
 
-  .post-header {
+  .bb {
     border-bottom: solid 1px #ccc;
   }
 
-  .md-card-content {
+  .post-content {
     max-width: 90%;
     padding: 1rem;
     margin: 0 auto;

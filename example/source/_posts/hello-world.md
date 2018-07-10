@@ -1,6 +1,11 @@
 ---
 title: Hello World
 date: 2018-05-08
+tags: 
+  - hey
+  - j
+categories:
+  - foo   
 ---
 Enim consequat nisi qui aliqua elit tempor commodo ipsum pariatur adipisicing. Voluptate adipisicing adipisicing consectetur irure nulla est enim minim aliqua fugiat incididunt nostrud deserunt. Sunt aute amet officia qui ex. Qui ea amet Lorem qui ad esse aliqua nostrud.
 
