@@ -22,7 +22,7 @@ module.exports = {
     "Yeah, I like animals better than people sometimes... Especially dogs. Dogs are the best. Every time you come home, they act like they haven't seen you in a year. And the good thing about dogs... is they got different dogs for different people.", // User description to display in the author segment.
   // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
-    {
+/*    {
       label: "GitHub",
       url: "https://github.com/Vagr9K/gatsby-material-starter",
       iconClassName: "fa fa-github"
@@ -37,6 +37,7 @@ module.exports = {
       url: "mailto:vagr9k@gmail.com",
       iconClassName: "fa fa-envelope"
     }
+    */
   ],
   copyright: "Copyright © 2017. Material User" // Copyright string for the footer of the website and RSS feed.
 };
