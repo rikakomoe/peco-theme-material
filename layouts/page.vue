@@ -84,6 +84,12 @@
   }
 </script>
 
+<style scoped>
+  .md-card {
+    margin-bottom: 1.5em;
+  }
+</style>
+
 <style>
   .md-card {
     overflow: hidden;
@@ -106,7 +112,7 @@
   }
 
   .post-title {
-    color: white;
+    color: #fafafa;
     font-size: 2.125rem;
   }
 

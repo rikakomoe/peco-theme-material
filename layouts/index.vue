@@ -30,11 +30,12 @@
         </div>
       </md-card-actions>
     </md-card>
-    <div class="pagination">
-      <md-button class="md-icon-button md-raised">
+    <div v-if="page.pagination.total > 1" class="pagination">
+      <md-button v-if="page.pagination.hasNext" :to="page.pagination.nextLink" class="md-icon-button md-raised">
         <md-icon>arrow_back</md-icon>
       </md-button>
-      <md-button class="md-icon-button md-raised">
+      <span class="page-number">{{ page.pagination.current }}</span>
+      <md-button v-if="page.pagination.hasPrev" :to="page.pagination.prevLink" class="md-icon-button md-raised">
         <md-icon>arrow_forward</md-icon>
       </md-button>
     </div>
@@ -84,6 +85,11 @@
     border-top: solid 1px #ccc;
   }
 
+  .post-title a, a:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
   .post-entry-content {
     line-height: 1.125rem;
     padding-top: 1.875rem;
@@ -98,6 +104,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .page-number {
+    margin: 0 auto;
+  }
+
+  .pagination button,.md-ripple {
+    z-index: 1;
   }
 
 </style>
