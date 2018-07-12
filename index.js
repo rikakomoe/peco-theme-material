@@ -6,12 +6,14 @@ import VueMaterial from 'vue-material'
 
 Vue.use(VueMaterial);
 
-let link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href = '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons';
-document.head.appendChild(link);
+if (typeof document !== 'undefined') {
+  let link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons';
+  document.head.appendChild(link);
 
-document.documentElement.className = 'md-scrollbar md-theme-default';
+  document.documentElement.className = 'md-scrollbar md-theme-default';
+}
 
 export default ({ router }) => {
   if (process.browser) {

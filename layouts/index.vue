@@ -1,7 +1,7 @@
 <template>
   <layout>
     <md-card v-for="page in page.posts">
-      <md-card-media :style="`background-image: url('https://ekyu.moe/article/thompson-hack-on-golang/thumbnail.jpg')`">
+      <md-card-media :style="`background-color: ${$themeConfig.theme_color}; background-image: url('${page.attributes.thumbnail}')`">
         <md-card-header>
           <div class="post-title">
             <router-link :to="page.slug">{{ page.attributes.title }}</router-link>
@@ -11,13 +11,13 @@
 
       <md-card-content class="post-entry-content" >
         {{ stripHtml(page.excerpt) }}
-        <router-link :to="page.slug">阅读全文</router-link>
+        <router-link :to="page.slug" :style="`color: ${$themeConfig.hyperlink_color}`">阅读全文</router-link>
       </md-card-content>
 
       <md-card-actions class="post-header bt" md-alignment="space-between">
         <div class="author-box">
           <md-avatar>
-            <img src="//ekyu.moe/res/img/avatar.jpg" alt="People">
+            <img :src="$themeConfig.avatar" :alt="$siteData.author">
           </md-avatar>
           <div class="author-panel">
             <strong>{{ $siteData.author }}</strong>
@@ -26,7 +26,10 @@
         </div>
 
         <div>
-          <router-link class="post-entry-cat" v-for="cat in page.attributes.categories" :to="`/categories/${cat}`">{{ cat }}</router-link>
+          <router-link class="post-entry-cat" :style="`color: ${$themeConfig.hyperlink_color}`"
+                       v-for="cat in page.attributes.categories" :to="`/categories/${cat}`">
+            {{ cat }}
+          </router-link>
         </div>
       </md-card-actions>
     </md-card>

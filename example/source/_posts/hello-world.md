@@ -5,7 +5,8 @@ tags:
   - hey
   - j
 categories:
-  - foo   
+  - foo
+thumbnail: https://img.rikako.moe/i/Igf.jpg
 ---
 Enim consequat nisi qui aliqua elit tempor commodo ipsum pariatur adipisicing. Voluptate adipisicing adipisicing consectetur irure nulla est enim minim aliqua fugiat incididunt nostrud deserunt. Sunt aute amet officia qui ex. Qui ea amet Lorem qui ad esse aliqua nostrud.
 

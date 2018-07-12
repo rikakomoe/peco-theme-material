@@ -1,5 +1,14 @@
 <template>
-  <div class="footer" />
+  <div>
+    <div class="to-top">
+      <md-button class="md-icon-button md-raised">
+        <md-icon>expand_less</md-icon>
+      </md-button>
+    </div>
+    <div class="footer">
+
+    </div>
+  </div>
 </template>
 
 <script>
@@ -25,5 +34,15 @@
     height: 9em;
     background-color: #fff;
     align-items: center;
+  }
+
+  .to-top {
+    position: relative;
+  }
+
+  .md-icon-button {
+    position: absolute;
+    right: 41px;
+    top: -20px;
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 title: Goodbye world
 date: 2015-04-13
+thumbnail: https://img.rikako.moe/i/Axp.jpg
 ---
 Ut occaecat quis sit non irure culpa tempor proident est sunt nisi in aliquip ipsum. Labore pariatur nulla fugiat deserunt voluptate ex et. Pariatur do ipsum quis veniam adipisicing mollit. Laborum eiusmod dolore occaecat esse non duis cupidatat voluptate ipsum cillum cillum. Et exercitation ut laborum proident mollit ex. Do et cupidatat pariatur amet enim velit. Amet ad irure nostrud sunt fugiat cupidatat ullamco ex consequat.
 

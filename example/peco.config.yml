@@ -14,3 +14,5 @@ themeConfig:
   android_chrome_color: "#0097A7"
   nprogress_color: "#29d"
   nprogress_buffer: "800"
+  avatar: /img/avatar.jpeg
+  sidebar_header: /img/sidebar_header.png

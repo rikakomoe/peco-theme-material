@@ -1,7 +1,7 @@
 <template>
   <layout>
     <md-card>
-      <md-card-media :style="`background-image: url('https://ekyu.moe/article/thompson-hack-on-golang/thumbnail.jpg')`">
+      <md-card-media :style="`background-color: ${$themeConfig.theme_color}; background-image: url('${page.attributes.thumbnail}')`">
         <md-card-header>
           <div class="post-title">
             {{ page.attributes.title }}
@@ -12,7 +12,7 @@
       <md-card-actions class="post-header bb" md-alignment="space-between">
         <div class="author-box">
           <md-avatar>
-            <img src="//ekyu.moe/res/img/avatar.jpg" alt="People">
+            <img :src="$themeConfig.avatar" :alt="$siteData.author">
           </md-avatar>
           <div class="author-panel">
             <strong>{{ $siteData.author }}</strong>
@@ -114,6 +114,7 @@
   .post-title {
     color: #fafafa;
     font-size: 2.125rem;
+    text-shadow: 1px 1px 8px #444;
   }
 
   .author-box {
